@@ -17,3 +17,7 @@ My Reading Notes of The AWK Programming Language"
   0% | [Chapter6.Little-Language](Chapter6.Little-Language.md) | 小巧语言
   0% | [Chapter7.Experiments-with-Algorithms](Chapter7.Experiments-with-Algorithms.md) | 算法实验
   0% | [Chapter8.Epilog](Chapter8.Epilog.md) | 结束
+
+  # 工具
+
+  - [AWK Langauge Support for VSCode](https://marketplace.visualstudio.com/items?itemName=luggage66.awk)
