@@ -19,7 +19,7 @@ My Reading Notes of The AWK Programming Language"
   0% | [Chapter5.Processing-Words](Chapter5.Processing-Words.md) | 处理单词
   0% | [Chapter6.Little-Language](Chapter6.Little-Language.md) | 小巧语言
   0% | [Chapter7.Experiments-with-Algorithms](Chapter7.Experiments-with-Algorithms.md) | 算法实验
-  0% | [Chapter8.Epilog](Chapter8.Epilog.md) | 结束
+  0% | [Chapter8.Epilog](Chapter8.Epilog.md) | 后记
 
   # 参考资料
   - [GAWK手册](https://www.gnu.org/software/gawk/manual/gawk.html)
