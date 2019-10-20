@@ -41,11 +41,11 @@ $ awk 'program' # run 'program' on standard input
 
 # 1.2 Simple Output
 
-AWK中只有两种数据类型：
+awk中只有两种数据类型：
 - number
 - string
 
-AWK读取每行数据，并将每行按空白符分隔成多个`fields`。第一个`field`用`$1`表示,第二个`field`用`$2`表示；第11个`field`用`$11`表示，以此类推。整行用`$0`表示。
+awk读取每行数据，并将每行按空白符分隔成多个`fields`。第一个`field`用`$1`表示,第二个`field`用`$2`表示；第11个`field`用`$11`表示，以此类推。整行用`$0`表示。
 
 ## Printing Every Line
 ```awk
@@ -107,7 +107,83 @@ Total pay for  Susie is 76.5
 
 # 1.3 Fancier Output
 
+## Lining Up fields
+
+print是一个statement，不是函数。只用于简单的输出。
+printf也会一个statement。可以输出任意格式内容。类似于c语言的printf函数。
+
+```bash
+$ awk '{printf("Total pay for %s is $%.2f\n", $1, $2 * $3)}' emp.data
+Total pay for Beth is $0.00
+Total pay for Dan is $0.00
+Total pay for Kathy is $40.00
+Total pay for Mark is $100.00
+Total pay for Mary is $121.00
+Total pay for Susie is $76.50
+```
+
+## Sorting the Output
+利用sort命令排序。
+> 注意：你需要了解sort是如何将输入排序的
+```bash
+$ awk '{printf("%6.2f   %s\n", $2 * $3, $0)}' emp.data | sort
+  0.00   Beth    4.00    0
+  0.00   Dan     3.75    0
+ 40.00   Kathy   4.00    10
+ 76.50   Susie   4.25    18
+100.00   Mark    5.00    20
+121.00   Mary    5.50    22
+```
+
 # 1.4 Selection
+
+## Selection by Comparison, Computation, Text Content
+
+我们已经知道每个awk程序都是由一组`pattern { action }`语句组成。
+用pattern匹配感兴趣的行叫做`select`即`选取`。
+
+```bash
+$ awk '$2 > 5 {print $0}' emp.data # by comparison
+Mary    5.50    22
+$ awk '$2 * $3 > 50 {print $0}' emp.data # by computation
+Mark    5.00    20
+Mary    5.50    22
+Susie   4.25    18
+$ awk 'BEGIN{IGNORECASE=1}; /susie|mar/ {print $0}' emp.data # by text matching
+Mark    5.00    20
+Mary    5.50    22
+Susie   4.25    18
+```
+
+## Combinations of Patterns
+
+pattern可以通过逻辑运算符结合:
+- && = AND
+- || = OR
+- ! = NOT
+
+## Data Validation
+
+略：就是利用pattern来检查数据是否符合要求
+
+## BEGIN and END
+
+`BEGIN`和`END`是两个特殊的`pattern`。分别匹配第一行之前和最后一行之后。
+说白了就是在读入文档之前和结束之后执行某个`action`
+
+```bash
+$ awk 'BEGIN{printf("Name\tRate\tHours\n")}; {print}; END{print "Done！"}' emp.data
+Name    Rate    Hours
+Beth    4.00    0    
+Dan     3.75    0    
+Kathy   4.00    10   
+Mark    5.00    20   
+Mary    5.50    22   
+Susie   4.25    18  
+```
+
+
+> 注意：awk的正则没有`/regexp/i`这种忽略大小写的开关。需要使用`IGNORECASE`全局开关。
 
 # 1.5 Computing with AWK
 

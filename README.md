@@ -12,7 +12,7 @@ My Reading Notes of The AWK Programming Language"
 
   进度 | 章节 | 中文
 ---:|:---|---:
- 22% | [Chapter1.An-AWK-Tutorial](Chapter1.An-AWK-Tutorial.md) | 入门教程
+ 44% | [Chapter1.An-AWK-Tutorial](Chapter1.An-AWK-Tutorial.md) | 入门教程
   0% | [Chapter2.The-AWK-Language](Chapter2.The-AWK-Language.md) | AWK语言
   0% | [Chapter3.Data-Processing](Chapter3.Data-Processing.md) | 数据处理
   0% | [Chapter4.Reports-and-Databases](Chapter4.Reports-and-Databases.md) | 报告与数据库
