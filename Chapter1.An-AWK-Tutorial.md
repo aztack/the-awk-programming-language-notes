@@ -187,10 +187,61 @@ Susie   4.25    18
 
 # 1.5 Computing with AWK
 
+- awk中变量不需要事先声明
+- 数值变量初始值是0
+- 字符串连接是通过空格分隔多个变量：str = s1 s2 s3
+
+```bash
+$ awk '{emps = emps $1 " "};END{print emps}' emp.data # string concatenation
+Beth Dan Kathy Mark Mary Susie
+```
+
 # 1.6 Control-Flow Statements
+
+awk中的`if`,`for`,`while`写法与c语言基本一致。
 
 # 1.7 Arrays
 
+```bash
+$ awk '
+{lines[NR]=$0}
+END {
+    for(i=NR;i>=0;i--) print(lines[i])
+}' emp.data
+Susie   4.25    18
+Mary    5.50    22
+Mark    5.00    20
+Kathy   4.00    10
+Dan     3.75    0
+Beth    4.00    0
+```
+
 # 1.8 A Handful of Useful "One-liner"
 
+```bash
+$ awk 'END {print NR}'  #打印行数
+$ awk 'NR == 2 {print}'  #打印第2行
+$ awk '{field = $NF} END {print field}'  #打印最后一行的最后一列
+$ awk 'NF > 4 {print}'  #打印大于4列的行
+$ awk '$NF > 4 {print}' #打印最后一列大于四的行
+$ awk '{nf = nf + NF} END {print nf}' #打印单元格数
+$ awk '/Beth/ {nlines = nlines + 1} END {print nlines}'
+$ awk '$1 > max {max = $1; maxline = $0} END {print max, maxline}' #打印第一列最大的行
+$ awk 'NF > 0 {print}' #打印至少有一列的行
+$ awk 'length($0) > 80 {print}' #打印长度大于80的行
+$ awk '{print NF, $0}' #打印每行列数和内容
+$ awk '{print $2, $1}' #翻转打印前两列
+$ awk '{tmp = $1; $1 = $2; $2 = tmp; print}' #交换前两列并打印整行
+$ awk '{$1 = NR; print}' #将第一列换成行号
+$ awk '{$2 = ""; print}' #去掉第二列
+$ awk '{for(i = NF; i > 0; i--) printf("%s ", $i); printf("\n)}' #翻转列
+$ awk '{sum = 0; for(i = 0; i< NF; i++) sum = sum + $i; print sum}' #打印每行的每列之和
+$ awk '{for (i = 1; i <= NF; i++) sum = sum + $i;}
+END {print sum}
+' # 所有单元格之和
+$ awk 'function abs(v) {return v < 0 ? -v : v}
+{for (i = 1; i <= NF; i++) print abs($i)}' # 打印每列绝对值
+```
+
 # 1.9 What's Next?
+略
