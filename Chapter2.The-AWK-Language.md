@@ -75,6 +75,59 @@ Susie->4.25;
 
 # 2.5 Input
 
+```bash
+$ awk 'program' data
+$ egrep 'Asia' countries | awk 'program'
+```
+
+## Input Separators
+
+```bash
+$ awk 'BEGIN{ FS="|" }' data
+$ awk -F'|' 'program' data
+```
+
+## Multiline Records
+
+## The `getline` Function
+
+[ Explicit Input with `getline`](https://www.gnu.org/software/gawk/manual/html_node/Getline.html#Getline)
+
+getline的形式 | 说明 | 解释
+---|---|---
+getline | Using getline with no arguments | 将下一行读到列变量$0,$1,...$n里。相当于读了两行
+getiine var | Using getline into a variable | 将下一行读到某个变量var。相当于读了两行
+getline < "file" | Using getline from a file| 从指定文件读取一行到$0
+getline var "file" | Using getline into a variable from a file | 从指定文件读取一行放到变量var中
+cmd \| getline | Using getline from a pipe | 从命令输出读取一行到$0（行尾有换行）
+cmd \| getline var | Using getline into a variable from a pipe | 从命令输出读取一行到变量var（行尾有换行）
+print "some query" \|& "db_server"
+"db_server" \|& getline | Using getline from a coprocess | 双向管道，输出读到$0
+cmd \|& getline var| Using getline into a variable from a coprocess |  双向管道，输出读到变量var
+
+
+- [Getline Notes: | Important things to know about getline.](https://www.gnu.org/software/gawk/manual/html_node/Getline-Notes.html#Getline-Notes)
+Getline Summary | Summary of getline Variants.
+
+### `getline` Summary
+
+Variant|Effect|awk / gawk
+---|---|---
+getline | Sets $0, NF, FNR, NR, and RT  | awk
+getline var | Sets var, FNR, NR, and RT	| awk
+getline < file | Sets $0, NF, and RT	| awk
+getline var < file	| Sets var and RT	| awk
+command \| getline	| Sets $0, NF, and RT	| awk
+command \| getline var	| Sets var and RT	| awk
+command \|& getline	| Sets $0, NF, and RT	| gawk
+command \|& getline var	| Sets var and RT	| gawk
+
+> 注意: 有Pipe的要用close(cmd)关掉对应管道
+
+## Command-Line Variable Assigments
+
+## Command-Line Arguments
+
 # 2.6 Interaction with Other Programs
 
 # 2.7 Summary
