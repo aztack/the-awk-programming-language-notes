@@ -65,7 +65,7 @@ Mark    5.00    20
 - continue
 - next
 - exit
-- exirt _expression_
+- exit _expression_
 
 ## Expressions
 ## Control-Flow Statements
