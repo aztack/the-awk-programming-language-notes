@@ -2,6 +2,9 @@
 
 ## BEGIN and END
 
+- `BEGIN { statements }`
+- `END { statements }`
+
 前面已经讲过BEGIN和END分别匹配第一行之前和最后一行之后。
 一般BEGIN用于初始化变量，修改内置变量。
 BEGIN、END可以出现多次。按出现次数依次执行。
@@ -19,18 +22,50 @@ def abc
 
 ## Expressions as Patterns
 
-## String-Matching Patterns
+`expression { statements }`
 
+## String-Matching Patterns
 ## Regular Expressions
+
+- `/regexp/ { statements }`
+- `expression ~ /regexp/ { statements }`
+- `expression !~ /regexp/ { statements }`
 
 ## Compound Patterns
 
+`compound pattern { statements }`
+
 ## Range  Patterns
+
+`pattern1, pattern2 { statements }`
+
+```bash
+$ awk 'NR==2,NR==4{print}' emp.data
+Dan     3.75    0
+Kathy   4.00    10
+Mark    5.00    20
+```
 
 ## Summary of Patterns
 
 
+
 # 2.2 Actions
+
+- _expression_, with constants, variables, assignments, functions, etc
+- print _expression-list_
+- printf(_format_, _expression-list_)
+- if (_expression_) _statement_
+- if (_expression_) _statement_ else _statement_
+- while (_expression_) _statement_
+- for (_expression_; _expression_; _expression_) _statement_
+- for (_variable_ in _array_) _statement_
+- do _statement_ while _epxression_
+- break
+- continue
+- next
+- exit
+- exirt _expression_
 
 ## Expressions
 ## Control-Flow Statements
